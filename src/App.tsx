@@ -4,7 +4,9 @@ import {
     useState,
     type ReactNode,
 } from 'react'
-import cookieImg from "./assets/cookie_base.png";
+import cookieImg from "./assets/cookie.png";
+import darkChocolateChipsImage from "./assets/dark_chocolate_chips.png";
+;
 
 
 // Define context type
@@ -15,17 +17,18 @@ type PizzaContextType = {
     toggleTopping: (t: string) => void
 }
 
+
 type ToppingConfig = {
-    name: string
-    image: string
-    positions: {
-        top?: string
-        bottom?: string
-        left?: string
-        transform?: string
-    }[]
-    style?: React.CSSProperties
-}
+  name: string;
+  image: string;
+  positions: {
+    top?: string;
+    bottom?: string;
+    left?: string;
+    transform?: string;
+  }[];
+  style?: React.CSSProperties;
+};
 
 type Position = {
     top?: string
@@ -177,43 +180,43 @@ CookieBuilder.Preview = function Preview() {
     };
 
     const TOPPING_CONFIGS: ToppingConfig[] = [
-        {
-            name: 'cheese',
-            image: '/images/cheese.png',
-            positions: [
-                POSITION_PRESETS.cheeseTopLeft,
-                POSITION_PRESETS.cheeseTopRight,
-                POSITION_PRESETS.bottomCenter,
-            ],
-            style: { width: 20 },
-        },
-        {
-            name: 'mushrooms',
-            image: '/images/mushrooms.png',
-            positions: [
-                POSITION_PRESETS.mushroomTopCenter,
-                POSITION_PRESETS.midLeft,
-                POSITION_PRESETS.midRight,
-                POSITION_PRESETS.mushroomBottomLeft,
-                POSITION_PRESETS.mushroomBottomRight,
-                POSITION_PRESETS.mushroomCenter,
-            ],
-            style: { width: 22, borderRadius: 11 },
-        },
-        {
-            name: 'tomato',
-            image: '/images/tomato.png',
-            positions: [
-                POSITION_PRESETS.center,
-                POSITION_PRESETS.topLeft,
-                POSITION_PRESETS.topRight,
-                POSITION_PRESETS.bottomLeft,
-                POSITION_PRESETS.bottomRight,
-                POSITION_PRESETS.topCenter,
-            ],
-            style: { width: 30, borderRadius: 10 },
-        },
-    ]
+      {
+        name: "cheese",
+        image: darkChocolateChipsImage,
+        positions: [
+          POSITION_PRESETS.cheeseTopLeft,
+          POSITION_PRESETS.cheeseTopRight,
+          POSITION_PRESETS.bottomCenter,
+        ],
+        style: { width: 20 },
+      },
+      {
+        name: "mushrooms",
+        image: darkChocolateChipsImage,
+        positions: [
+          POSITION_PRESETS.mushroomTopCenter,
+          POSITION_PRESETS.midLeft,
+          POSITION_PRESETS.midRight,
+          POSITION_PRESETS.mushroomBottomLeft,
+          POSITION_PRESETS.mushroomBottomRight,
+          POSITION_PRESETS.mushroomCenter,
+        ],
+        style: { width: 22, borderRadius: 11 },
+      },
+      {
+        name: "tomato",
+        image: "/images/tomato.png",
+        positions: [
+          POSITION_PRESETS.center,
+          POSITION_PRESETS.topLeft,
+          POSITION_PRESETS.topRight,
+          POSITION_PRESETS.bottomLeft,
+          POSITION_PRESETS.bottomRight,
+          POSITION_PRESETS.topCenter,
+        ],
+        style: { width: 30, borderRadius: 10 },
+      },
+    ];
 
     const renderImages = (
         positions: Position[],
@@ -230,7 +233,7 @@ CookieBuilder.Preview = function Preview() {
                     ...(pos.transform ? { transform: pos.transform } : {}),
                 }}
             >
-                <img src={image} alt={name} style={style} />
+                <img src={image} style={style} />
             </div>
         ))
     }
