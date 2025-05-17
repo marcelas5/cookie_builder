@@ -233,7 +233,7 @@ CookieBuilder.Preview = function Preview() {
                     ...(pos.transform ? { transform: pos.transform } : {}),
                 }}
             >
-                <img src={image} style={style} />
+                <img src={image} alt={name} style={style} />
             </div>
         ))
     }
