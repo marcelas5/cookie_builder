@@ -215,7 +215,7 @@ CookieBuilder.Preview = function Preview() {
           POSITION_PRESETS.bottomRight,
           POSITION_PRESETS.topCenter,
         ],
-        style: { width: 60, borderRadius: 10 },
+        style: { width: 55, borderRadius: 10 },
       },
     ];
 
