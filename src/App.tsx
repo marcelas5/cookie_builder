@@ -5,7 +5,8 @@ import {
     type ReactNode,
 } from 'react'
 import cookieImg from "./assets/cookie.png";
-import darkChocolateChipsImage from "./assets/dark_chocolate_chips.png";
+import sprinklesImage from "./assets/sprinkles.png";
+import candyImage from "./assets/candy.png";
 ;
 
 
@@ -47,10 +48,10 @@ const POSITION_PRESETS = {
     },
     topLeft: { top: '25%', left: '15%' },
     topRight: { top: '25%', right: '20%' },
-    cheeseTopLeft: { top: '25%', left: '22%' },
+    cheeseTopLeft: { top: '15%', left: '17%' },
     cheeseTopRight: { top: '25%', right: '25%' },
-    bottomLeft: { bottom: '25%', left: '20%' },
-    bottomRight: { bottom: '25%', right: '20%' },
+    bottomLeft: { bottom: '35%', left: '30%' },
+    bottomRight: { bottom: '30%', right: '30%' },
     mushroomBottomLeft: { bottom: '30%', left: '25%' },
     mushroomBottomRight: { bottom: '30%', right: '25%' },
     midLeft: { top: '50%', left: '5%', transform: 'translateY(-50%)' },
@@ -182,17 +183,17 @@ CookieBuilder.Preview = function Preview() {
     const TOPPING_CONFIGS: ToppingConfig[] = [
       {
         name: "cheese",
-        image: darkChocolateChipsImage,
+        image: candyImage,
         positions: [
           POSITION_PRESETS.cheeseTopLeft,
           POSITION_PRESETS.cheeseTopRight,
           POSITION_PRESETS.bottomCenter,
         ],
-        style: { width: 20 },
+        style: { width: 80 },
       },
       {
         name: "mushrooms",
-        image: darkChocolateChipsImage,
+        image: candyImage,
         positions: [
           POSITION_PRESETS.mushroomTopCenter,
           POSITION_PRESETS.midLeft,
@@ -205,7 +206,7 @@ CookieBuilder.Preview = function Preview() {
       },
       {
         name: "tomato",
-        image: "/images/tomato.png",
+        image: sprinklesImage,
         positions: [
           POSITION_PRESETS.center,
           POSITION_PRESETS.topLeft,
@@ -214,7 +215,7 @@ CookieBuilder.Preview = function Preview() {
           POSITION_PRESETS.bottomRight,
           POSITION_PRESETS.topCenter,
         ],
-        style: { width: 30, borderRadius: 10 },
+        style: { width: 60, borderRadius: 10 },
       },
     ];
 
