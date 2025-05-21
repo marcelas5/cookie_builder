@@ -7,6 +7,7 @@ import {
 import cookieImg from "./assets/cookie.png";
 import sprinklesImage from "./assets/sprinkles.png";
 import candyImage from "./assets/candy.png";
+import zigzagImage from "./assets/zigzag.png";
 ;
 
 
@@ -48,15 +49,15 @@ const POSITION_PRESETS = {
     },
     topLeft: { top: '25%', left: '15%' },
     topRight: { top: '25%', right: '20%' },
-    cheeseTopLeft: { top: '15%', left: '17%' },
-    cheeseTopRight: { top: '25%', right: '25%' },
-    bottomLeft: { bottom: '35%', left: '30%' },
-    bottomRight: { bottom: '30%', right: '30%' },
+    cheeseTopLeft: { top: '35%', left: '17%' },
+    cheeseTopRight: { top: '10%', right: '35%' },
+    bottomLeft: { bottom: '15%', left: '20%' },
+    bottomRight: { bottom: '20%', right: '20%' },
     mushroomBottomLeft: { bottom: '30%', left: '25%' },
     mushroomBottomRight: { bottom: '30%', right: '25%' },
-    midLeft: { top: '50%', left: '5%', transform: 'translateY(-50%)' },
-    midRight: { top: '50%', right: '16%', transform: 'translateY(-50%)' },
-    topCenter: { top: '10%', left: '50%', transform: 'translateX(-50%)' },
+    midLeft: { top: '40%', left: '25%', transform: 'translateY(-50%)' },
+    midRight: { top: '40%', right: '30%', transform: 'translateY(-50%)' },
+    topCenter: { top: '10%', left: '35%', transform: 'translateX(-50%)' },
     mushroomTopCenter: { top: '22%', left: '50%', transform: 'translateX(-50%)' },
     bottomCenter: { bottom: '10%', left: '50%', transform: 'translateX(-50%)' },
 } satisfies Record<string, Position & { transform?: string }>
@@ -189,11 +190,11 @@ CookieBuilder.Preview = function Preview() {
           POSITION_PRESETS.cheeseTopRight,
           POSITION_PRESETS.bottomCenter,
         ],
-        style: { width: 80 },
+        style: { width: 70 },
       },
       {
         name: "mushrooms",
-        image: candyImage,
+        image: zigzagImage,
         positions: [
           POSITION_PRESETS.mushroomTopCenter,
           POSITION_PRESETS.midLeft,
@@ -202,7 +203,7 @@ CookieBuilder.Preview = function Preview() {
           POSITION_PRESETS.mushroomBottomRight,
           POSITION_PRESETS.mushroomCenter,
         ],
-        style: { width: 22, borderRadius: 11 },
+        style: { width: 62, borderRadius: 11 },
       },
       {
         name: "tomato",
@@ -215,7 +216,7 @@ CookieBuilder.Preview = function Preview() {
           POSITION_PRESETS.bottomRight,
           POSITION_PRESETS.topCenter,
         ],
-        style: { width: 55, borderRadius: 10 },
+        style: { width: 65, borderRadius: 10 },
       },
     ];
 
