@@ -150,21 +150,21 @@ CookieBuilder.Preview = function Preview() {
 
     const renderWidth = () => {
         if (isSmall) {
-            return 150
+            return 200
         }
         if (isMedium) {
-            return 250
+            return 300
         }
         if (isLarge) {
-            return 350
+            return 400
         }
     }
 
     const renderPizza = () => {
         const getPizzaSize = () => {
-            if (isSmall) return { width: 150 };
-            if (isMedium) return { width: 250 };
-            if (isLarge) return { width: 350, marginLeft: -17 };
+            if (isSmall) return { width: 200 };
+            if (isMedium) return { width: 300 };
+            if (isLarge) return { width: 400, marginLeft: -17 };
             return null;
         };
 
