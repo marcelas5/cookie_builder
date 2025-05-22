@@ -8,8 +8,11 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App>
       <CookieBuilder>
+        <h1 className="cookie-builder-headline">
+          🍪 Chocolate Chip Cookie Builder
+        </h1>
         <CookieBuilder.SizeSelector options={["small", "medium", "large"]} />
-        <CookieBuilder.ToppingSelector options={["cheese", "mushrooms", "tomato"]} />
+        <CookieBuilder.ToppingSelector options={["candy", "zigzag", "sprinkles"]} />
         <CookieBuilder.Preview />
       </CookieBuilder>
     </App>

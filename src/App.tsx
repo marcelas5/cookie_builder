@@ -12,7 +12,7 @@ import zigzagImage from "./assets/zigzag.png";
 
 
 // Define context type
-type PizzaContextType = {
+type CookieContextType = {
     size: string
     setSize: (size: string) => void
     toppings: string[]
@@ -42,34 +42,34 @@ type Position = {
 
 const POSITION_PRESETS = {
     center: { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' },
-    mushroomCenter: {
+    zigzagCenter: {
         top: '50%',
         left: '40%',
         transform: 'translate(-50%, -50%)',
     },
     topLeft: { top: '25%', left: '15%' },
     topRight: { top: '25%', right: '20%' },
-    cheeseTopLeft: { top: '35%', left: '17%' },
-    cheeseTopRight: { top: '10%', right: '35%' },
+    candyTopLeft: { top: '35%', left: '17%' },
+    candyTopRight: { top: '10%', right: '35%' },
     bottomLeft: { bottom: '15%', left: '20%' },
     bottomRight: { bottom: '20%', right: '20%' },
-    mushroomBottomLeft: { bottom: '30%', left: '25%' },
-    mushroomBottomRight: { bottom: '30%', right: '25%' },
+    zigzagBottomLeft: { bottom: '30%', left: '25%' },
+    zigzagBottomRight: { bottom: '30%', right: '25%' },
     midLeft: { top: '40%', left: '25%', transform: 'translateY(-50%)' },
     midRight: { top: '40%', right: '30%', transform: 'translateY(-50%)' },
     topCenter: { top: '10%', left: '35%', transform: 'translateX(-50%)' },
-    mushroomTopCenter: { top: '22%', left: '50%', transform: 'translateX(-50%)' },
+    zigzagTopCenter: { top: '22%', left: '50%', transform: 'translateX(-50%)' },
     bottomCenter: { bottom: '10%', left: '50%', transform: 'translateX(-50%)' },
 } satisfies Record<string, Position & { transform?: string }>
 
 // Create context with correct type (use null + type guard for safety)
-const PizzaContext = createContext<PizzaContextType | null>(null)
+const CookieContext = createContext<CookieContextType | null>(null)
 
 // 🛠️ Hook to safely use context
-const usePizza = () => {
-    const ctx = useContext(PizzaContext)
+const useCookie = () => {
+    const ctx = useContext(CookieContext)
     if (!ctx)
-        throw new Error('Pizza components must be used inside <PizzaBuilder>')
+        throw new Error('Cookie components must be used inside <CookieBuilder>')
     return ctx
 }
 
@@ -85,12 +85,12 @@ function CookieBuilder ({ children }: { children: ReactNode }) {
                 : [...prev, toppin],
         )
 
-    const value: PizzaContextType = { size, setSize, toppings, toggleTopping }
+    const value: CookieContextType = { size, setSize, toppings, toggleTopping }
 
     return (
-        <PizzaContext.Provider value={value}>
-            <div className="pizza-builder">{children}</div>
-        </PizzaContext.Provider>
+        <CookieContext.Provider value={value}>
+            <div className='cookie-builder-wrapper'>{children}</div>
+        </CookieContext.Provider>
     )
 }
 
@@ -100,21 +100,21 @@ CookieBuilder.SizeSelector = function SizeSelector({
 }: {
     options: string[]
 }) {
-    const { size, setSize } = usePizza()
+    const { size, setSize } = useCookie()
     return (
-        <div>
-            <h2>Select Size</h2>
-            {options.map((option) => (
-                <button
-                    key={option}
-                    onClick={() => setSize(option)}
-                    style={{ fontWeight: option === size ? 'bold' : 'normal' }}
-                >
-                    {option}
-                </button>
-            ))}
-        </div>
-    )
+      <div className="cookie-section">
+        <h2>Select Size</h2>
+        {options.map((option) => (
+          <button
+            key={option}
+            onClick={() => setSize(option)}
+            className={`size-button ${option === size ? "selected" : ""}`}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+    );
 }
 
 // Compound component: ToppingSelector
@@ -123,12 +123,12 @@ CookieBuilder.ToppingSelector = function ToppingSelector({
 }: {
     options: string[]
 }) {
-    const { toppings, toggleTopping } = usePizza()
+    const { toppings, toggleTopping } = useCookie()
     return (
-        <div>
+        <div className='cookie-section'>
             <h2>Select Toppings</h2>
             {options.map((option) => (
-                <label key={option} style={{ display: 'block' }}>
+                <label key={option} className="topping-option">
                     <input
                         type="checkbox"
                         checked={toppings.includes(option)}
@@ -143,7 +143,7 @@ CookieBuilder.ToppingSelector = function ToppingSelector({
 
 // Compound component: Preview
 CookieBuilder.Preview = function Preview() {
-    const { size, toppings } = usePizza()
+    const { size, toppings } = useCookie()
     const isSmall = size === 'small'
     const isLarge = size === 'large'
     const isMedium = size === 'medium'
@@ -160,22 +160,22 @@ CookieBuilder.Preview = function Preview() {
         }
     }
 
-    const renderPizza = () => {
-        const getPizzaSize = () => {
+    const renderCookie = () => {
+        const getCookieSize = () => {
             if (isSmall) return { width: 200 };
             if (isMedium) return { width: 300 };
             if (isLarge) return { width: 400, marginLeft: -17 };
             return null;
         };
 
-        const sizeStyle = getPizzaSize();
+        const sizeStyle = getCookieSize();
 
         if (!sizeStyle) return null;
 
         return (
             <img
                 src={cookieImg}
-                alt="Pizza"
+                alt="Cookie"
                 style={sizeStyle}
             />
         );
@@ -183,30 +183,30 @@ CookieBuilder.Preview = function Preview() {
 
     const TOPPING_CONFIGS: ToppingConfig[] = [
       {
-        name: "cheese",
+        name: "candy",
         image: candyImage,
         positions: [
-          POSITION_PRESETS.cheeseTopLeft,
-          POSITION_PRESETS.cheeseTopRight,
+          POSITION_PRESETS.candyTopLeft,
+          POSITION_PRESETS.candyTopRight,
           POSITION_PRESETS.bottomCenter,
         ],
         style: { width: 70 },
       },
       {
-        name: "mushrooms",
+        name: "zigzag",
         image: zigzagImage,
         positions: [
-          POSITION_PRESETS.mushroomTopCenter,
+          POSITION_PRESETS.zigzagTopCenter,
           POSITION_PRESETS.midLeft,
           POSITION_PRESETS.midRight,
-          POSITION_PRESETS.mushroomBottomLeft,
-          POSITION_PRESETS.mushroomBottomRight,
-          POSITION_PRESETS.mushroomCenter,
+          POSITION_PRESETS.zigzagBottomLeft,
+          POSITION_PRESETS.zigzagBottomRight,
+          POSITION_PRESETS.zigzagCenter,
         ],
         style: { width: 62, borderRadius: 11 },
       },
       {
-        name: "tomato",
+        name: "sprinkles",
         image: sprinklesImage,
         positions: [
           POSITION_PRESETS.center,
@@ -250,15 +250,15 @@ CookieBuilder.Preview = function Preview() {
     }
 
     return (
-        <h3>
-            Pizza: {size} with {toppings.length ? toppings.join(', ') : 'no toppings'}
-            <div style={{ position: 'relative', width: renderWidth() }}>
-                <div>
-                    {renderPizza()}
-                    {renderToppings()}
-                </div>
-            </div>
-        </h3>
+      <>
+        <div className="cookie-preview-info">
+          Cookie: {size} with {toppings.length ? toppings.join(', ') : 'no toppings'}
+        </div>
+          <div className="cookie-preview-container" style={{ width: renderWidth() }}>
+            {renderCookie()}
+            {renderToppings()}
+          </div>
+      </>
     )
 }
 
